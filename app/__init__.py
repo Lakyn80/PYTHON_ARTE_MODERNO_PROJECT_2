@@ -8,7 +8,9 @@ def create_app():
     app.config.from_object('config.config.Config')  # Důležité! Nastavena úplná cesta
 
     # Importy routes nebo blueprintů
-    with app.app_context():
-        from . import routes
+    from app.views.routes import views
+
+    app.register_blueprint(views, url_prefix='/')
+
 
     return app
